@@ -1,0 +1,37 @@
+<div>
+  <div class="-mb-px flex" role="tablist">
+    <button
+      class="no-underline text-gray-800 hover:text-blue-500 border-b-2 border-transparent mx-1 px-4 py-2 font-medium"
+      hx-get="/budget"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-content"
+    >
+      Budget
+    </button>
+
+    <button
+      class="no-underline text-blue-500 border-b-2 border-blue-500 mx-1 px-4 py-2 font-medium"
+      hx-get="/strava"
+      role="tab"
+      aria-selected="true"
+      aria-controls="tab-content"
+    >
+      Strava
+    </button>
+
+    <button
+      class="no-underline text-gray-800 hover:text-blue-500 border-b-2 border-transparent mx-1 px-4 py-2 font-medium"
+      hx-get="/hacker-news"
+      role="tab"
+      aria-selected="false"
+      aria-controls="tab-content"
+    >
+      Hacker News
+    </button>
+  </div>
+
+  <div id="tab-content" role="tabpanel" class="tab-content">
+    <div id="link">Strava</div>
+  </div>
+</div>
