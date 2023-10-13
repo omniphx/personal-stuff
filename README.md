@@ -1,4 +1,4 @@
-# Deploy to AWS Beanstalk
+# Personal Stuff
 
 A Flask/HTMX app for my personal stuff
 
