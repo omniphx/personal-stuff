@@ -2,11 +2,11 @@
 
 A Flask/HTMX app for my personal stuff
 
-### Getting started
+## Getting started
 
 1. `python3 -m venv .venv`
 2. `. .venv/bin/activate`
-3. `pip3 install`
+3. `pip install -r requirements.txt`
 
 ### Generate SSL
 

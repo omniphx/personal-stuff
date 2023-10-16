@@ -70,11 +70,6 @@ PLAID_PRODUCTS = os.getenv('PLAID_PRODUCTS', 'transactions').split(',')
 # will be able to select institutions from.
 PLAID_COUNTRY_CODES = os.getenv('PLAID_COUNTRY_CODES', 'US').split(',')
 
-STRAVA_CLIENT_ID = os.getenv('STRAVA_CLIENT_ID')
-STRAVA_CLIENT_SECRET = os.getenv('STRAVA_CLIENT_SECRET')
-
-
-
 def empty_to_none(field):
     value = os.getenv(field)
     if value is None or len(value) == 0:
@@ -153,13 +148,13 @@ def info():
     global access_token
     global item_id
     print(access_token)
-    return render_template("info.html", access_token=access_token)
+    # return render_template("info.html", access_token=access_token)
     # return render_template("info.html", access_token=access_token, item_id=item_id, products=PLAID_PRODUCTS)
-    # return jsonify({
-    #     'item_id': item_id,
-    #     'access_token': access_token,
-    #     'products': PLAID_PRODUCTS
-    # })
+    return jsonify({
+        'item_id': item_id,
+        'access_token': access_token,
+        'products': PLAID_PRODUCTS
+    })
 
 
 @app.route('/api/create_link_token_for_payment', methods=['POST'])
@@ -393,7 +388,6 @@ def get_accounts():
 # including one Item here.
 # https://plaid.com/docs/#assets
 
-
 @app.route('/api/assets', methods=['GET'])
 def get_assets():
     try:
@@ -525,7 +519,6 @@ def transfer():
 # This functionality is only relevant for the UK Payment Initiation product.
 # Retrieve Payment for a specified Payment ID
 
-
 @app.route('/api/payment', methods=['GET'])
 def payment():
     global payment_id
@@ -538,10 +531,8 @@ def payment():
         error_response = format_error(e)
         return jsonify(error_response)
 
-
 # Retrieve high-level information about an Item
 # https://plaid.com/docs/#retrieve-item
-
 
 @app.route('/api/item', methods=['GET'])
 def item():
@@ -615,21 +606,6 @@ def authorize_and_create_transfer(access_token):
     except plaid.ApiException as e:
         error_response = format_error(e)
         return jsonify(error_response)
-
-@app.route('/api/strava/get-token', methods=['GET'])
-def getStravaToken():
-    url = 'https://www.strava.com/api/v3/athlete'
-    headers = {'Authorization': 'Bearer YOURACCESSTOKEN'}
-    response = requests.get(url, headers=headers)
-    return 'f55b6e77ffb84bd460beefee5e05cd623b467af2'
-
-@app.route('/strava/callback', methods=['GET'])
-def getStravaToken():
-    url = 'https://www.strava.com/api/v3/athlete'
-    headers = {'Authorization': 'Bearer YOURACCESSTOKEN'}
-    response = requests.get(url, headers=headers)
-    return 'f55b6e77ffb84bd460beefee5e05cd623b467af2'
-
 
 if __name__ == '__main__':
     app.run(ssl_context=("cert.pem", "key.pem"), debug=True)
